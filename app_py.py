@@ -14,7 +14,6 @@ if submit_btn:
 elif cancel_btn:
     st.write('キャンセルしました')
 
-<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
