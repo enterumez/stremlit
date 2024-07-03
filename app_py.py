@@ -16,7 +16,8 @@ elif cancel_btn:
     st.write('キャンセルしました')
 
 stc.html("""
+<div width="1280px" height="600px">
 <iframe class=frameborder="0" src="https://speakerdeck.com/player/8eaed11763ea4d0d901a4bf870ac52c7" title="プライシングについて" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: 100%; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
-        </body>
+        </div></body>
         </html>
         """)
