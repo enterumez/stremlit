@@ -1,33 +1,108 @@
-# Import streamlit and other libraries
-import streamlit as st
+# Import sqlite3 and pandas
 import sqlite3
 import pandas as pd
 
 # Connect to the database
 conn = sqlite3.connect('blog.db')
+
+# Create a cursor object
 c = conn.cursor()
 
 # Create a table if not exists
-c.execute('CREATE TABLE IF NOT EXISTS posts (author TEXT, title TEXT, content TEXT, date DATE)')
+c.execute('CREATE TABLE IF NOT EXISTS posts (author TEXT NOT NULL, title TEXT NOT NULL, content TEXT NOT NULL, date DATE NOT NULL)')
 
-# Define some functions for interacting with the database
+# Close the connection and the cursor
+conn.close()
+c.close()
+
+# Define a function to add a new post
 def add_post(author, title, content, date):
-    c.execute('INSERT INTO posts (author, title, content, date) VALUES (?,?,?,?)', (author, title, content, date))
-    conn.commit()
+    try:
+        # Connect to the database
+        conn = sqlite3.connect('blog.db')
+        # Create a cursor object
+        c = conn.cursor()
+        # Insert a new row into the posts table
+        c.execute('INSERT INTO posts (author, title, content, date) VALUES (?,?,?,?)', (author, title, content, date))
+        # Save the changes to the database
+        conn.commit()
+        # Close the connection and the cursor
+        conn.close()
+        c.close()
+    except sqlite3.Error as e:
+        # Print the error message
+        print(e)
 
+# Define a function to get all the posts
 def get_all_posts():
-    c.execute('SELECT * FROM posts')
-    data = c.fetchall()
-    return data
+    try:
+        # Connect to the database
+        conn = sqlite3.connect('blog.db')
+        # Create a cursor object
+        c = conn.cursor()
+        # Select all the rows from the posts table
+        c.execute('SELECT * FROM posts')
+        # Fetch all the results
+        data = c.fetchall()
+        # Close the connection and the cursor
+        conn.close()
+        c.close()
+        # Return the data
+        return data
+    except sqlite3.Error as e:
+        # Print the error message
+        print(e)
 
+# Define a function to get a post by title
 def get_post_by_title(title):
-    c.execute('SELECT * FROM posts WHERE title=?', (title,))
-    data = c.fetchone()
-    return data
+    try:
+        # Connect to the database
+        conn = sqlite3.connect('blog.db')
+        # Create a cursor object
+        c = conn.cursor()
+        # Select the row from the posts table that matches the title
+        c.execute('SELECT * FROM posts WHERE title=?', (title,))
+        # Fetch the result
+        data = c.fetchone()
+        # Close the connection and the cursor
+        conn.close()
+        c.close()
+        # Return the data
+        return data
+    except sqlite3.Error as e:
+        # Print the error message
+        print(e)
 
+# Define a function to delete a post
 def delete_post(title):
-    c.execute('DELETE FROM posts WHERE title=?', (title,))
-    conn.commit()
+    try:
+        # Connect to the database
+        conn = sqlite3.connect('blog.db')
+        # Create a cursor object
+        c = conn.cursor()
+        # Delete the row from the posts table that matches the title
+        c.execute('DELETE FROM posts WHERE title=?', (title,))
+        # Save the changes to the database
+        conn.commit()
+        # Close the connection and the cursor
+        conn.close()
+        c.close()
+    except sqlite3.Error as e:
+        # Print the error message
+        print(e)
+
+# Test the functions
+add_post('Alice', 'Hello World', 'This is my first post', '2021-01-01')
+add_post('Bob', 'Streamlit Rocks', 'This is my second post', '2021-01-02')
+add_post('Charlie', 'Python is Awesome', 'This is my third post', '2021-01-03')
+print(get_all_posts())
+print(get_post_by_title('Streamlit Rocks'))
+delete_post('Hello World')
+print(get_all_posts())
+
+[('Alice', 'Hello World', 'This is my first post', '2023-01-01'), ('Bob', 'Streamlit Rocks', 'This is my second post', '2023-01-02'), ('Charlie', 'Python is Awesome', 'This is my third post', '2023-01-03')]
+('Bob', 'Streamlit Rocks', 'This is my second post', '2023-01-02')
+[('Bob', 'Streamlit Rocks', 'This is my second post', '2023-01-02'), ('Charlie', 'Python is Awesome', 'This is my third post', '2023-01-03')]
 
 # Define some HTML templates for displaying the posts
 title_temp = """
@@ -63,7 +138,6 @@ if choice == "Home":
     st.write("This is a simple blog app built with streamlit and python.")
     st.write("You can view, add, search, and manage posts using the sidebar menu.")
     st.write("Enjoy!")
-
 elif choice == "View Posts":
     st.title("View Posts")
     st.write("Here you can see all the posts in the blog.")
@@ -75,7 +149,6 @@ elif choice == "View Posts":
         # Add a button to view the full post
         if st.button("Read More", key=post[1]):
             st.markdown(post_temp.format(post[1], post[0], post[3], post[2]), unsafe_allow_html=True)
-
 elif choice == "Add Post":
     st.title("Add Post")
     st.write("Here you can add a new post to the blog.")
@@ -90,7 +163,6 @@ elif choice == "Add Post":
     if submit:
         add_post(author, title, content, date)
         st.success("Post added successfully")
-
 elif choice == "Search":
     st.title("Search")
     st.write("Here you can search for a post by title or author.")
@@ -112,7 +184,6 @@ elif choice == "Search":
                     st.markdown(post_temp.format(result[1], result[0], result[3], result[2]), unsafe_allow_html=True)
         else:
             st.write("No matching posts found")
-
 elif choice == "Manage":
     st.title("Manage")
     st.write("Here you can delete posts or view some statistics.")
