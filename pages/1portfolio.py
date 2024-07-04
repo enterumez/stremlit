@@ -10,7 +10,7 @@ conn = sqlite3.connect('sleep_data.db')
 　　　id INTEGER PRIMARY KEY, 
 　　　date TEXT NOT NULL, 
 　　　sleep_time TEXT NOT NULL, 
-　　　wake_time TEXT NOT NULL５。 
+　　　wake_time TEXT NOT NULL
 ) 
 ''')
 # ユーザーからの入力を受け付ける
