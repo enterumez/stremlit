@@ -24,7 +24,7 @@ image = Image.open('Image/機械学習の価値.png')
 st.image(image)
 
 st.subheader('ビジネスへの応用サイクル')
-image = Image.open('.Image/CRISP-DM_Process_Diagram.png')
+image = Image.open('Image/CRISP-DM_Process_Diagram.png')
 st.image(image)
 st.text('引用：「Cross-industry standard process for data mining」')
 
@@ -38,7 +38,7 @@ st.text('ビジネス理解\n'
         'プロセスダイアグラムの矢印は、フェーズ間の最も重要で頻繁な依存関係を示している。\n')
 
 st.subheader('機械学習を活用するために必要なこと')
-image = Image.open('.Image/ml_all.png')
+image = Image.open('Image/ml_all.png')
 st.image(image)
 st.text('引用：「Hidden Technical Debt in Machine Learning Systems」')
 
