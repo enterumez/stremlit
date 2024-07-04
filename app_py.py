@@ -21,11 +21,11 @@ st.text('・理解志向型モデル')
 st.text('　データがどういうメカニズムで生成されているのかを理解することを目指す。\n'
         '　対象となる現象において、どの要因が強く影響を与えているかを特定したり、なぜそのような現象が起こるのかを明らかにすることが目的')
 image = Image.open('機械学習の価値.png')
-st.image(image, width=500)
+st.image(image, width=100%)
 
 st.subheader('ビジネスへの応用サイクル')
 image = Image.open('CRISP-DM_Process_Diagram.png')
-st.image(image, width=500)
+st.image(image, width=100%)
 st.text('引用：「Cross-industry standard process for data mining」')
 
 st.text('ビジネス理解\n'
@@ -39,6 +39,6 @@ st.text('ビジネス理解\n'
 
 st.subheader('機械学習を活用するために必要なこと')
 image = Image.open('ml_all.png')
-st.image(image, width=500)
+st.image(image, width=100%)
 st.text('引用：「Hidden Technical Debt in Machine Learning Systems」')
 
