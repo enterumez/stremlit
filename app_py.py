@@ -3,7 +3,7 @@ import streamlit.components.v1 as stc
 from PIL import Image
 
 st.title('機械学習 理論と応用')
-st.caption('小さな会社のひとり情シスによる機械学習のポートフォリオ的なページです。\n'
+st.text('小さな会社のひとり情シスによる機械学習のポートフォリオ的なページです。\n'
           '転職活動中、副業案件募集中です。')
 
 st.subheader('機械学習の価値')
