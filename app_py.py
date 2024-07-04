@@ -2,7 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as stc
 
 st.title('機械学習 理論と応用')
-
+st.caption('小さな会社のひとり情シスによる機械学習のポートフォリオ的なページです。')
 name = st.text_input('名前')
 print(name)
 
